@@ -1,5 +1,5 @@
 #include <cstddef>
-
+#include <ostream>
 #include <utility>
 
 //default Scopeptr
@@ -128,3 +128,16 @@ auto invoke(Func&& func, Args&&... args) {
     return func(std::forward<Args>(args)...);
 }
 
+//flatten
+
+template<typename T>
+void flatten(const T& elem, std::ostream& out) {
+    out << elem << " ";
+}
+
+template<typename T>
+void flatten(const Array<T>& array, std::ostream& out) {
+    for (const auto& elem : array) {
+        flatten(elem, out);
+    }
+}

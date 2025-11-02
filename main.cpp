@@ -1,4 +1,4 @@
-
+#include <cstddef>
 
 #include <utility>
 
@@ -109,3 +109,14 @@ struct are_same<T, U, Rest...> {
         is_same<T, U>::value && are_same<U, Rest...>::value;
 };
 
+//size
+
+template<typename T, size_t N>
+class Array {
+    
+};
+
+template<typename T, size_t N>
+constexpr size_t size(const Array<T, N>&) {
+    return N;
+}

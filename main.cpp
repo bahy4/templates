@@ -120,3 +120,11 @@ template<typename T, size_t N>
 constexpr size_t size(const Array<T, N>&) {
     return N;
 }
+
+//invoke
+
+template<typename Func, typename... Args>
+auto invoke(Func&& func, Args&&... args) {
+    return func(std::forward<Args>(args)...);
+}
+

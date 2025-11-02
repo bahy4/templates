@@ -90,5 +90,22 @@ struct is_same<T, T> {
 
 //are_same
 
+template<typename... Types>
+struct are_same;
 
+template<typename T>
+struct are_same <T> {
+    static constexpr bool value = true;
+};
+
+template<typename T, typename U>
+struct are_same<T, U> {
+    static constexpr bool value = is_same<T, U>::value;
+};
+
+template<typename T, typename U, typename... Rest>
+struct are_same<T, U, Rest...> {
+    static constexpr bool value = 
+        is_same<T, U>::value && are_same<U, Rest...>::value;
+};
 

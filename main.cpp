@@ -15,10 +15,10 @@ public:
     explicit ScopePtr(T* ptr) : m_ptr{ptr} {}
     ScopePtr(const ScopePtr&) = delete;
     ScopePtr& operator=(const ScopePtr&) = delete;
-    ScopePtr(ScopePtr&& other)
+    ScopePtr(ScopePtr&& other) noexcept
         : m_ptr{std::exchange(other.m_ptr, nullptr)} {}
     
-    ScopePtr& operator=(ScopePtr&& other) {
+    ScopePtr& operator=(ScopePtr&& other) noexcept {
         std::swap(m_ptr, other.m_ptr);
         return *this;
     }
@@ -53,10 +53,10 @@ public:
     ScopePtr(const ScopePtr&) = delete;
     ScopePtr& operator=(const ScopePtr&) = delete;
     
-    ScopePtr(ScopePtr&& other)
+    ScopePtr(ScopePtr&& other) noexcept
         : m_ptr{std::exchange(other.m_ptr, nullptr)} {}
     
-    ScopePtr& operator=(ScopePtr&& other) {
+    ScopePtr& operator=(ScopePtr&& other) noexcept {
         std::swap(m_ptr, other.m_ptr);
         return *this;
     }
